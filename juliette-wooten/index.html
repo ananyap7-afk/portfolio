@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juliette Wooten | High Performance Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #0B1221;
+    --navy2:     #111C30;
+    --navy3:     #162038;
+    --teal:      #0D2035;
+    --pink:      #E8195A;
+    --pink2:     #C0143F;
+    --pink-glow: rgba(232,25,90,0.15);
+    --white:     #FFFFFF;
+    --off-white: #E8EDF5;
+    --mid:       #7A8FA8;
+    --light:     #4A6080;
+    --border:    rgba(255,255,255,0.08);
+    --border2:   rgba(255,255,255,0.04);
+    --teal-accent: #0E9AB5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:'Barlow', sans-serif;
+    background:var(--navy);
+    color:var(--white);
+    overflow-x:hidden;
+  }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 48px; height:64px;
+    background:rgba(11,18,33,0.96);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border2);
+  }
+  .nav-logo {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:20px; font-weight:900; letter-spacing:3px;
+    text-transform:uppercase; color:var(--white);
+  }
+  .nav-logo span { color:var(--pink); }
+  .nav-links { display:flex; gap:32px; align-items:center; }
+  .nav-links a {
+    color:var(--mid); text-decoration:none;
+    font-size:11px; font-weight:600;
+    letter-spacing:2px; text-transform:uppercase; transition:color 0.2s;
+  }
+  .nav-links a:hover { color:var(--white); }
+  .nav-cta {
+    background:var(--pink) !important; color:var(--white) !important;
+    padding:10px 22px; font-size:11px !important; letter-spacing:2px !important;
+    font-weight:700 !important;
+  }
+  .nav-cta:hover { background:var(--pink2) !important; }
+
+  /* BUTTONS */
+  .btn-pink {
+    display:inline-block; background:var(--pink); color:var(--white);
+    padding:16px 40px;
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:16px; font-weight:900; letter-spacing:3px; text-transform:uppercase;
+    border:none; cursor:pointer; text-decoration:none; transition:background 0.2s;
+    clip-path:polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-pink:hover { background:var(--pink2); }
+  .btn-outline {
+    display:inline-block; background:transparent; color:var(--white);
+    padding:15px 36px;
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:16px; font-weight:900; letter-spacing:3px; text-transform:uppercase;
+    border:2px solid rgba(255,255,255,0.25); cursor:pointer; text-decoration:none; transition:all 0.2s;
+    clip-path:polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-outline:hover { border-color:var(--pink); color:var(--pink); }
+
+  /* HERO */
+  .hero {
+    min-height:100vh; padding:100px 48px 80px;
+    display:grid; grid-template-columns:1fr 1fr;
+    align-items:center; gap:60px;
+    background:var(--navy);
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 50%, rgba(13,154,181,0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 50% at 100% 100%, rgba(232,25,90,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 0% 0%, rgba(13,154,181,0.05) 0%, transparent 50%);
+  }
+  .hero-left { position:relative; z-index:1; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:10px;
+    border:1px solid rgba(232,25,90,0.4); background:rgba(232,25,90,0.08);
+    padding:8px 18px; margin-bottom:28px;
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+    color:var(--pink);
+  }
+  .hero-badge span { width:6px; height:6px; background:var(--pink); display:inline-block; }
+  .hero h1 {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:clamp(56px, 8vw, 104px);
+    font-weight:900; line-height:0.88;
+    letter-spacing:1px; text-transform:uppercase;
+    color:var(--white); margin-bottom:20px;
+  }
+  .hero h1 .pink { color:var(--pink); display:block; }
+  .hero h1 .white { color:var(--white); display:block; }
+  .hero-sub-badge {
+    display:inline-block;
+    background:var(--white); color:var(--navy);
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:12px; font-weight:800; letter-spacing:3px; text-transform:uppercase;
+    padding:7px 18px; margin-bottom:28px;
+    clip-path:polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+  .hero-body {
+    font-size:17px; font-weight:300; color:var(--mid);
+    line-height:1.75; max-width:440px; margin-bottom:40px;
+  }
+  .hero-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:44px; }
+  .hero-proof { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .proof-stars { color:var(--pink); font-size:16px; letter-spacing:2px; }
+  .proof-div { width:1px; height:18px; background:var(--border); }
+  .proof-text { font-size:13px; color:var(--mid); font-weight:500; }
+  .hero-right {
+    position:relative; z-index:1;
+    background:var(--navy2);
+    border:1px solid var(--border);
+    height:500px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .hero-right::before {
+    content:''; position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(13,154,181,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(232,25,90,0.08) 0%, transparent 50%);
+    pointer-events:none;
+  }
+  .hero-right-text {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:clamp(56px,8vw,88px); font-weight:900;
+    text-transform:uppercase; line-height:0.88;
+    letter-spacing:1px; text-align:center; padding:24px;
+    color:rgba(255,255,255,0.04);
+    position:relative; z-index:1; user-select:none;
+  }
+  .hero-stat-row {
+    position:absolute; bottom:0; left:0; right:0;
+    display:grid; grid-template-columns:1fr 1fr 1fr;
+    border-top:1px solid var(--border);
+  }
+  .hero-stat {
+    padding:16px 20px; text-align:center;
+    border-right:1px solid var(--border);
+  }
+  .hero-stat:last-child { border-right:none; }
+  .hero-stat .n {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:28px; font-weight:900; color:var(--pink); line-height:1;
+  }
+  .hero-stat .l { font-size:10px; color:var(--mid); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-top:3px; }
+
+  /* TICKER */
+  .ticker { background:var(--pink); padding:11px 0; overflow:hidden; }
+  .ticker-track {
+    display:flex; gap:0; white-space:nowrap;
+    animation:scroll 20s linear infinite;
+  }
+  .ticker-item {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:13px; font-weight:900; letter-spacing:3px;
+    text-transform:uppercase; color:var(--white);
+    padding:0 36px; flex-shrink:0;
+  }
+  .ticker-item.dark { color:rgba(255,255,255,0.45); }
+  @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  /* SECTIONS */
+  section { padding:96px 48px; }
+  .container { max-width:1080px; margin:0 auto; }
+  .eyebrow {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:12px; font-weight:700; letter-spacing:4px;
+    text-transform:uppercase; color:var(--pink);
+    margin-bottom:12px; display:block;
+  }
+  h2 {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:clamp(40px,5.5vw,72px); font-weight:900;
+    line-height:0.9; letter-spacing:1px;
+    text-transform:uppercase; color:var(--white); margin-bottom:20px;
+  }
+  h2 .pink { color:var(--pink); }
+  .body-text {
+    font-size:16px; font-weight:300; color:var(--mid);
+    line-height:1.8; max-width:520px;
+  }
+
+  /* PROBLEM */
+  .problem-section { background:var(--navy2); }
+  .problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:56px; }
+  .problem-col { padding:40px 36px; background:var(--navy3); }
+  .problem-col.hot { background:var(--pink); }
+  .problem-col h3 {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:22px; font-weight:900; letter-spacing:2px; text-transform:uppercase;
+    margin-bottom:24px; color:var(--light);
+  }
+  .problem-col.hot h3 { color:rgba(255,255,255,0.75); }
+  .check-row { display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--border2); }
+  .problem-col.hot .check-row { border-color:rgba(255,255,255,0.15); }
+  .check-row:last-child { border-bottom:none; }
+  .ci { font-size:14px; flex-shrink:0; margin-top:3px; color:var(--light); font-weight:700; }
+  .problem-col.hot .ci { color:rgba(255,255,255,0.7); }
+  .check-row span { font-size:14px; font-weight:400; color:var(--mid); line-height:1.6; }
+  .check-row.ok span { color:var(--off-white); font-weight:500; }
+  .problem-col.hot .check-row span { color:rgba(255,255,255,0.7); }
+  .problem-col.hot .check-row.ok span { color:var(--white); font-weight:600; }
+
+  /* PROGRAMS */
+  .programs-section { background:var(--navy); }
+  .filter-row { display:flex; gap:8px; flex-wrap:wrap; margin:40px 0 48px; }
+  .filter-tab {
+    padding:10px 22px;
+    background:transparent; border:1px solid var(--border);
+    color:var(--light); cursor:pointer;
+    font-family:'Barlow Condensed', sans-serif; font-size:13px;
+    font-weight:700; letter-spacing:2px; text-transform:uppercase; transition:all 0.2s;
+    clip-path:polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .filter-tab.active { background:var(--pink); border-color:var(--pink); color:var(--white); }
+  .filter-tab:hover { border-color:var(--pink); color:var(--white); }
+  .programs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2px; }
+  .program-card { background:var(--navy2); cursor:pointer; transition:transform 0.25s; overflow:hidden; border:1px solid var(--border2); }
+  .program-card:hover { transform:translateY(-4px); border-color:rgba(232,25,90,0.3); }
+  .prog-banner { height:168px; position:relative; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; overflow:hidden; }
+  .prog-banner::before {
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(11,18,33,0.8) 0%, transparent 60%);
+    z-index:1;
+  }
+  .prog-banner-content { position:relative; z-index:2; }
+  .prog-banner-tag {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    color:var(--white); opacity:0.7; margin-bottom:6px; display:block;
+  }
+  .prog-banner-title {
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:900; text-transform:uppercase; line-height:0.9;
+    letter-spacing:1px;
+  }
+  .prog-banner-title .pink { color:var(--pink); font-size:18px; display:block; }
+  .prog-banner-title .white { color:var(--white); font-size:28px; display:block; }
+  .prog-body { padding:18px 22px 24px; }
+  .prog-tags { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:10px; }
+  .ptag {
+    font-size:9px; font-weight:700; letter-spacing:1.5px; padding:4px 10px;
+    text-transform:uppercase; border:1px solid var(--border); color:var(--mid);
+  }
+  .ptag.pink { border-color:rgba(232,25,90,0.4); color:var(--pink); }
+  .ptag.teal { border-color:rgba(13,154,181,0.4); color:var(--teal-accent); }
+  .prog-body h3 {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:20px; font-weight:900; letter-spacing:0.5px; text-transform:uppercase;
+    color:var(--white); margin-bottom:5px; line-height:1.1;
+  }
+  .prog-meta { font-size:12px; color:var(--mid); font-weight:500; margin-bottom:16px; }
+  .prog-btn {
+    width:100%; padding:11px; background:var(--pink); color:var(--white);
+    border:none; cursor:pointer;
+    font-family:'Barlow Condensed', sans-serif; font-size:14px;
+    font-weight:900; letter-spacing:3px; text-transform:uppercase; transition:background 0.2s;
+  }
+  .prog-btn:hover { background:var(--pink2); }
+
+  /* FEATURES */
+  .features-section { background:var(--navy2); }
+  .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:56px; }
+  .feat-card { background:var(--navy3); padding:32px 28px; border-left:3px solid transparent; transition:border-color 0.2s; }
+  .feat-card:hover { border-left-color:var(--pink); }
+  .feat-card:nth-child(2),.feat-card:nth-child(5) { border-left-color:rgba(13,154,181,0.5); }
+  .feat-num {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:48px; font-weight:900; color:var(--pink); opacity:0.2;
+    line-height:1; margin-bottom:16px; display:block;
+  }
+  .feat-card h3 {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:20px; font-weight:900; letter-spacing:1px; text-transform:uppercase;
+    color:var(--white); margin-bottom:10px;
+  }
+  .feat-card p { font-size:14px; color:var(--mid); font-weight:300; line-height:1.7; }
+
+  /* COMPARISON */
+  .comparison-section { background:var(--navy3); }
+  .comparison-table { width:100%; border-collapse:collapse; margin-top:56px; }
+  .comparison-table th {
+    padding:14px 20px; text-align:center;
+    font-family:'Barlow Condensed', sans-serif; font-size:14px;
+    font-weight:900; letter-spacing:2px; text-transform:uppercase;
+    color:var(--light); border-bottom:1px solid var(--border);
+  }
+  .comparison-table th.hl { color:var(--white); border-bottom:2px solid var(--pink); }
+  .comparison-table th:first-child { text-align:left; }
+  .comparison-table td {
+    padding:14px 20px; text-align:center;
+    border-bottom:1px solid var(--border2);
+    font-size:13px; color:var(--light); font-weight:400;
+  }
+  .comparison-table td:first-child { text-align:left; color:var(--off-white); }
+  .comparison-table td.hl { background:rgba(232,25,90,0.05); }
+  .chk { color:var(--pink); font-size:16px; font-weight:700; }
+  .crs { color:rgba(255,255,255,0.1); }
+
+  /* STATS */
+  .stats-section { background:var(--pink); padding:72px 48px; }
+  .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; max-width:800px; margin:0 auto; text-align:center; }
+  .stat-box { padding:0 40px; border-right:1px solid rgba(255,255,255,0.2); }
+  .stat-box:last-child { border-right:none; }
+  .s-num {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:clamp(52px,7vw,80px); font-weight:900;
+    color:var(--white); line-height:1; margin-bottom:8px; letter-spacing:1px;
+  }
+  .s-label { font-size:11px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.65); line-height:1.5; }
+
+  /* TESTIMONIALS */
+  .testimonials-section { background:var(--navy); }
+  .t-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:2px; margin-top:56px; }
+  .t-card { background:var(--navy2); padding:32px; border:1px solid var(--border2); transition:border-color 0.2s; }
+  .t-card:hover { border-color:rgba(232,25,90,0.25); }
+  .t-stars { color:var(--pink); font-size:14px; letter-spacing:2px; margin-bottom:18px; }
+  .t-quote { font-size:15px; font-weight:300; color:var(--off-white); line-height:1.7; margin-bottom:24px; }
+  .t-bar { width:32px; height:2px; background:var(--pink); margin-bottom:14px; }
+  .t-name { font-family:'Barlow Condensed', sans-serif; font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--white); }
+  .t-loc { font-size:12px; color:var(--mid); font-weight:400; margin-top:3px; }
+
+  /* PRICING */
+  .pricing-section { background:var(--navy2); }
+  .price-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(256px,1fr)); gap:2px; margin-top:56px; max-width:860px; }
+  .price-card { background:var(--navy3); padding:36px 32px; position:relative; border:1px solid var(--border2); transition:border-color 0.2s, transform 0.2s; }
+  .price-card:hover { border-color:rgba(232,25,90,0.3); transform:translateY(-3px); }
+  .price-card.feat { background:var(--pink); border-color:transparent; }
+  .pop-tag {
+    position:absolute; top:-1px; right:0;
+    background:var(--white); color:var(--navy);
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:10px; font-weight:900; letter-spacing:2px; text-transform:uppercase;
+    padding:6px 16px;
+  }
+  .price-tier {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+    color:var(--light); margin-bottom:16px;
+  }
+  .price-card.feat .price-tier { color:rgba(255,255,255,0.6); }
+  .price-amount {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:64px; font-weight:900; letter-spacing:-1px;
+    color:var(--white); line-height:1; margin-bottom:4px;
+  }
+  .price-mo { font-size:13px; color:var(--mid); font-weight:400; margin-bottom:4px; }
+  .price-card.feat .price-mo { color:rgba(255,255,255,0.55); }
+  .price-billing { font-size:11px; color:var(--light); margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid var(--border2); }
+  .price-card.feat .price-billing { color:rgba(255,255,255,0.45); border-color:rgba(255,255,255,0.15); }
+  .price-list { list-style:none; margin-bottom:28px; }
+  .price-list li {
+    font-size:13px; font-weight:400; padding:9px 0;
+    display:flex; align-items:center; gap:12px;
+    border-bottom:1px solid var(--border2); color:var(--off-white);
+  }
+  .price-card.feat .price-list li { color:rgba(255,255,255,0.85); border-color:rgba(255,255,255,0.12); }
+  .price-list li::before { content:'—'; color:var(--pink); font-size:12px; font-weight:700; }
+  .price-card.feat .price-list li::before { color:rgba(255,255,255,0.6); }
+  .price-btn {
+    width:100%; padding:14px;
+    background:var(--pink); color:var(--white); border:none; cursor:pointer;
+    font-family:'Barlow Condensed', sans-serif; font-size:16px;
+    font-weight:900; letter-spacing:3px; text-transform:uppercase; transition:all 0.2s;
+  }
+  .price-btn:hover { background:var(--pink2); }
+  .price-btn.white-btn { background:var(--white); color:var(--pink); }
+  .price-btn.white-btn:hover { background:var(--off-white); }
+  .price-note { font-size:12px; color:var(--light); margin-top:20px; font-weight:400; }
+
+  /* FAQ */
+  .faq-section { background:var(--navy); }
+  .faq-list { max-width:700px; margin:56px auto 0; }
+  .faq-item { border-bottom:1px solid var(--border); }
+  .faq-q {
+    width:100%; background:transparent; border:none; cursor:pointer;
+    padding:20px 0; display:flex; justify-content:space-between; align-items:center; gap:16px;
+    color:var(--white); font-family:'Barlow', sans-serif;
+    font-size:15px; font-weight:500; text-align:left;
+  }
+  .faq-icon { font-size:20px; color:var(--pink); transition:transform 0.3s; flex-shrink:0; }
+  .faq-item.open .faq-icon { transform:rotate(45deg); }
+  .faq-a {
+    max-height:0; overflow:hidden; transition:max-height 0.35s ease;
+    font-size:14px; color:var(--mid); font-weight:300; line-height:1.8; padding:0;
+  }
+  .faq-item.open .faq-a { max-height:200px; padding-bottom:20px; }
+
+  /* FINAL CTA */
+  .final-cta {
+    background:var(--navy2); text-align:center; padding:120px 48px;
+    position:relative; overflow:hidden;
+  }
+  .final-cta::before {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 50% 60% at 50% 100%, rgba(232,25,90,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 0%, rgba(13,154,181,0.06) 0%, transparent 50%);
+  }
+  .final-cta .eyebrow { text-align:center; }
+  .final-cta h2 { max-width:700px; margin:0 auto 16px; position:relative; z-index:1; }
+  .final-cta p { font-size:16px; color:var(--mid); font-weight:300; margin-bottom:48px; position:relative; z-index:1; }
+
+  /* FOOTER */
+  footer { background:var(--navy); border-top:1px solid var(--border); padding:48px; }
+  .footer-inner { max-width:1080px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; }
+  .footer-logo {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:20px; font-weight:900; letter-spacing:3px; text-transform:uppercase; color:var(--white);
+  }
+  .footer-logo span { color:var(--pink); }
+  .footer-links { display:flex; gap:28px; flex-wrap:wrap; }
+  .footer-links a { color:var(--light); text-decoration:none; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; transition:color 0.2s; }
+  .footer-links a:hover { color:var(--pink); }
+  .footer-copy { font-size:11px; color:var(--light); font-weight:300; }
+
+  /* PLAYER */
+  .player-overlay {
+    display:none; position:fixed; inset:0; z-index:200;
+    background:var(--navy); flex-direction:column;
+    align-items:center; justify-content:center; padding:32px;
+  }
+  .player-overlay.active { display:flex; }
+  .player-bar { position:absolute; top:0; left:0; height:4px; background:var(--pink); transition:width 1s linear; }
+  .player-back {
+    position:absolute; top:24px; left:28px;
+    background:transparent; border:1px solid var(--border);
+    color:var(--mid); padding:10px 20px; cursor:pointer;
+    font-family:'Barlow Condensed', sans-serif; font-size:12px;
+    font-weight:700; letter-spacing:2px; text-transform:uppercase; transition:all 0.2s;
+  }
+  .player-back:hover { border-color:var(--pink); color:var(--pink); }
+  .player-inner { text-align:center; max-width:540px; width:100%; }
+  .player-label {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:13px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+    color:var(--pink); margin-bottom:16px;
+  }
+  .player-phase { font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--light); margin-bottom:10px; }
+  .player-exercise {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:clamp(40px,7vw,72px); font-weight:900;
+    text-transform:uppercase; letter-spacing:1px;
+    color:var(--white); line-height:1; margin-bottom:24px;
+  }
+  .player-timer {
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:clamp(100px,18vw,160px); font-weight:900;
+    letter-spacing:-4px; color:var(--white);
+    line-height:1; margin-bottom:14px; transition:color 0.3s;
+  }
+  .player-timer.rest { color:var(--teal-accent); }
+  .player-next { font-size:14px; color:var(--mid); font-weight:400; margin-bottom:40px; }
+  .player-next strong { color:var(--white); }
+  .player-controls { display:flex; gap:12px; justify-content:center; }
+  .pbtn {
+    padding:13px 28px; cursor:pointer; border:none;
+    font-family:'Barlow Condensed', sans-serif; font-size:14px;
+    font-weight:900; letter-spacing:2px; text-transform:uppercase; transition:all 0.2s;
+    clip-path:polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .pbtn.pause { background:var(--pink); color:var(--white); }
+  .pbtn.pause:hover { background:var(--pink2); }
+  .pbtn.skip { background:var(--navy2); color:var(--mid); border:1px solid var(--border); clip-path:none; }
+  .pbtn.skip:hover { color:var(--white); border-color:var(--pink); }
+  .player-done { display:none; text-align:center; }
+  .player-done h2 { color:var(--white); margin-bottom:8px; font-size:clamp(48px,7vw,80px); }
+  .player-done h2 span { color:var(--pink); }
+  .player-done p { font-size:15px; color:var(--mid); font-weight:300; margin-bottom:40px; }
+  .done-stats { display:flex; gap:48px; justify-content:center; margin-bottom:40px; flex-wrap:wrap; }
+  .ds .n { font-family:'Barlow Condensed', sans-serif; font-size:56px; font-weight:900; color:var(--pink); line-height:1; letter-spacing:-1px; }
+  .ds .l { font-size:10px; color:var(--mid); letter-spacing:2px; text-transform:uppercase; margin-top:6px; font-weight:700; }
+
+  /* RESPONSIVE */
+  @media(max-width:900px) {
+    nav { padding:0 20px; }
+    .nav-links { display:none; }
+    .hero { grid-template-columns:1fr; padding:100px 24px 60px; }
+    .hero-right { height:300px; }
+    section { padding:72px 24px; }
+    .problem-grid { grid-template-columns:1fr; }
+    .features-grid { grid-template-columns:1fr 1fr; }
+    .stats-grid { grid-template-columns:1fr; gap:40px; }
+    .stat-box { border-right:none; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:32px; }
+    .stat-box:last-child { border-bottom:none; }
+    .footer-inner { flex-direction:column; text-align:center; }
+    .footer-links { justify-content:center; }
+    .comparison-table th,.comparison-table td { padding:10px 6px; font-size:11px; }
+  }
+  @media(max-width:600px) {
+    .features-grid { grid-template-columns:1fr; }
+    h2 { letter-spacing:0.5px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Juliette <span>Wooten</span></div>
+  <div class="nav-links">
+    <a href="#programs">Programs</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#pricing" class="nav-cta">Start Free Trial</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge"><span></span>High Performance Training</div>
+    <h1>
+      <span class="pink">Killer</span>
+      <span class="white">Workouts.</span>
+      <span class="pink">Ultimate</span>
+      <span class="white">Results.</span>
+    </h1>
+    <div class="hero-sub-badge">High Performance Training</div>
+    <p class="hero-body">HIIT, Tabata, cardio and strength programs that push you past your limits — built for people who don't accept average. Structured, progressive, relentless.</p>
+    <div class="hero-btns">
+      <a href="#pricing" class="btn-pink">Start Free Trial</a>
+      <a href="#programs" class="btn-outline">View Programs</a>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-stars">★★★★★</div>
+      <div class="proof-div"></div>
+      <p class="proof-text">4.9 · Trusted by 9,400+ athletes</p>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-text">KILLER<br>ULTIMATE<br>BURN<br>HIIT</div>
+    <div class="hero-stat-row">
+      <div class="hero-stat"><div class="n">60+</div><div class="l">Min sessions</div></div>
+      <div class="hero-stat"><div class="n">500+</div><div class="l">Calories burned</div></div>
+      <div class="hero-stat"><div class="n">100%</div><div class="l">No excuses</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Killer HIIT</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">Ultimate Burn</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">Tabata</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">Cardio + Strength</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">High Performance</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">9,400+ Athletes</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">Killer HIIT</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">Ultimate Burn</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">Tabata</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">Cardio + Strength</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">High Performance</span>
+    <span class="ticker-item dark">✦</span>
+    <span class="ticker-item">9,400+ Athletes</span>
+    <span class="ticker-item dark">✦</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem-section">
+  <div class="container">
+    <span class="eyebrow">The difference</span>
+    <h2>Stop <span class="pink">wasting</span><br>your workouts</h2>
+    <p class="body-text">Random YouTube videos keep you busy. A structured program makes you dangerous. There's a real difference between movement and training.</p>
+    <div class="problem-grid">
+      <div class="problem-col">
+        <h3>Without a program</h3>
+        <div class="check-row"><span class="ci">✕</span><span>Random videos with no progression or structure</span></div>
+        <div class="check-row"><span class="ci">✕</span><span>Pausing YouTube mid-HIIT to reset timers</span></div>
+        <div class="check-row"><span class="ci">✕</span><span>Same intensity every week — no real overload</span></div>
+        <div class="check-row"><span class="ci">✕</span><span>No accountability when you don't feel like it</span></div>
+        <div class="check-row"><span class="ci">✕</span><span>Results plateau and motivation crashes</span></div>
+      </div>
+      <div class="problem-col hot">
+        <h3>With Juliette's App</h3>
+        <div class="check-row ok"><span class="ci">—</span><span>Periodised programs that get harder as you get stronger</span></div>
+        <div class="check-row ok"><span class="ci">—</span><span>Built-in timer with Juliette's voice cues — zero pausing</span></div>
+        <div class="check-row ok"><span class="ci">—</span><span>Progressive overload built into every single program</span></div>
+        <div class="check-row ok"><span class="ci">—</span><span>Streak tracking and completion milestones push you further</span></div>
+        <div class="check-row ok"><span class="ci">—</span><span>Visible results in 4 weeks when you commit to the program</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs-section" id="programs">
+  <div class="container">
+    <span class="eyebrow">Programs</span>
+    <h2>Choose your <span class="pink">killer</span> program</h2>
+    <p class="body-text">Every program is designed to push you — not coddle you. Progressive, structured, and built for maximum results.</p>
+    <div class="filter-row">
+      <button class="filter-tab active" onclick="filterProg('all',this)">All</button>
+      <button class="filter-tab" onclick="filterProg('hiit',this)">HIIT</button>
+      <button class="filter-tab" onclick="filterProg('tabata',this)">Tabata</button>
+      <button class="filter-tab" onclick="filterProg('strength',this)">Strength</button>
+      <button class="filter-tab" onclick="filterProg('pilates',this)">Pilates</button>
+    </div>
+    <div class="programs-grid" id="progGrid">
+      <div class="program-card" data-cat="hiit">
+        <div class="prog-banner" style="background:linear-gradient(135deg,#0B1221,#1A2840)">
+          <div class="prog-banner-content">
+            <span class="prog-banner-tag">Total Body Workout</span>
+            <div class="prog-banner-title">
+              <span class="pink">Killer HIIT</span>
+              <span class="white">Ultimate Burn</span>
+            </div>
+          </div>
+        </div>
+        <div class="prog-body">
+          <div class="prog-tags"><span class="ptag">4 weeks</span><span class="ptag pink">Advanced</span><span class="ptag">60+ min</span></div>
+          <h3>Killer HIIT Ultimate Burn</h3>
+          <p class="prog-meta">20 sessions · Light weights · 55–70 min</p>
+          <button class="prog-btn" onclick="startWorkout('Killer HIIT Ultimate Burn')">Start Program</button>
+        </div>
+      </div>
+      <div class="program-card" data-cat="tabata">
+        <div class="prog-banner" style="background:linear-gradient(135deg,#1A0A14,#2A1020)">
+          <div class="prog-banner-content">
+            <span class="prog-banner-tag">Fat Destroyer</span>
+            <div class="prog-banner-title">
+              <span class="pink">Killer Tabata</span>
+              <span class="white">Ultimate Burn</span>
+            </div>
+          </div>
+        </div>
+        <div class="prog-body">
+          <div class="prog-tags"><span class="ptag">6 weeks</span><span class="ptag pink">Elite</span><span class="ptag">90 min</span></div>
+          <h3>Killer Tabata Fat Destroyer</h3>
+          <p class="prog-meta">24 sessions · No equipment · 75–95 min</p>
+          <button class="prog-btn" onclick="startWorkout('Killer Tabata Fat Destroyer')">Start Program</button>
+        </div>
+      </div>
+      <div class="program-card" data-cat="hiit">
+        <div class="prog-banner" style="background:linear-gradient(135deg,#081820,#0D2030)">
+          <div class="prog-banner-content">
+            <span class="prog-banner-tag">Full Body Workout</span>
+            <div class="prog-banner-title">
+              <span class="pink">Intense HIIT</span>
+              <span class="white">Ultimate 30</span>
+            </div>
+          </div>
+        </div>
+        <div class="prog-body">
+          <div class="prog-tags"><span class="ptag">4 weeks</span><span class="ptag teal">Intermediate</span><span class="ptag">30 min</span></div>
+          <h3>Intense HIIT Ultimate 30</h3>
+          <p class="prog-meta">20 sessions · Light weights · 25–35 min</p>
+          <button class="prog-btn" onclick="startWorkout('Intense HIIT Ultimate 30')">Start Program</button>
+        </div>
+      </div>
+      <div class="program-card" data-cat="strength">
+        <div class="prog-banner" style="background:linear-gradient(135deg,#14080C,#200C14)">
+          <div class="prog-banner-content">
+            <span class="prog-banner-tag">Metabolic Training</span>
+            <div class="prog-banner-title">
+              <span class="pink">Cardio + Strength</span>
+              <span class="white">Ultimate Burn</span>
+            </div>
+          </div>
+        </div>
+        <div class="prog-body">
+          <div class="prog-tags"><span class="ptag">8 weeks</span><span class="ptag pink">Advanced</span><span class="ptag">60 min</span></div>
+          <h3>Metabolic Cardio + Strength</h3>
+          <p class="prog-meta">32 sessions · Weights required · 55–65 min</p>
+          <button class="prog-btn" onclick="startWorkout('Metabolic Cardio + Strength')">Start Program</button>
+        </div>
+      </div>
+      <div class="program-card" data-cat="pilates">
+        <div class="prog-banner" style="background:linear-gradient(135deg,#0A1828,#142030)">
+          <div class="prog-banner-content">
+            <span class="prog-banner-tag">Bodyweight</span>
+            <div class="prog-banner-title">
+              <span class="pink">Power Pilates</span>
+              <span class="white">Bodyweight</span>
+            </div>
+          </div>
+        </div>
+        <div class="prog-body">
+          <div class="prog-tags"><span class="ptag">4 weeks</span><span class="ptag teal">All levels</span><span class="ptag">50 min</span></div>
+          <h3>Power Pilates Bodyweight</h3>
+          <p class="prog-meta">20 sessions · No equipment · 45–55 min</p>
+          <button class="prog-btn" onclick="startWorkout('Power Pilates Bodyweight')">Start Program</button>
+        </div>
+      </div>
+      <div class="program-card" data-cat="hiit">
+        <div class="prog-banner" style="background:linear-gradient(135deg,#100820,#1A1030)">
+          <div class="prog-banner-content">
+            <span class="prog-banner-tag">Power HIIT + Yoga</span>
+            <div class="prog-banner-title">
+              <span class="pink">Total Body</span>
+              <span class="white">Power HIIT</span>
+            </div>
+          </div>
+        </div>
+        <div class="prog-body">
+          <div class="prog-tags"><span class="ptag">5 weeks</span><span class="ptag pink">Advanced</span><span class="ptag">70 min</span></div>
+          <h3>Total Body Power HIIT + Yoga</h3>
+          <p class="prog-meta">25 sessions · Light weights · 65–75 min</p>
+          <button class="prog-btn" onclick="startWorkout('Total Body Power HIIT')">Start Program</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="container">
+    <span class="eyebrow">What's included</span>
+    <h2>Built for <span class="pink">real</span> results</h2>
+    <div class="features-grid">
+      <div class="feat-card">
+        <span class="feat-num">01</span>
+        <h3>Progressive Programs</h3>
+        <p>Every session is harder than the last. Periodised programs that build progressive overload into every week — so your body never adapts and stops changing.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-num">02</span>
+        <h3>Built-in Workout Timer</h3>
+        <p>Auto-advancing timer with Juliette's voice cues at exactly the right moment. Zero pausing, zero phone fiddling — just pure, uninterrupted intensity.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-num">03</span>
+        <h3>HIIT, Tabata & Strength</h3>
+        <p>Every training modality covered. Killer HIIT, fat-burning Tabata, metabolic strength — all sequenced into structured programs that actually burn.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-num">04</span>
+        <h3>Progress Tracking</h3>
+        <p>Streaks, session history, calories burned, completion milestones. See your consistency laid out — because the numbers don't lie and neither does your body.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-num">05</span>
+        <h3>New Programs Monthly</h3>
+        <p>New programs and sessions every month. Your body will never plateau and you'll never have an excuse to skip because you're bored of the content.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-num">06</span>
+        <h3>Train Anywhere</h3>
+        <p>Hotel room, garage, backyard. All you need is a little space and the commitment to show up. No gym, no excuses, no limits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison-section">
+  <div class="container">
+    <span class="eyebrow">Why the app</span>
+    <h2>Juliette's App vs <span class="pink">YouTube</span> vs Gym</h2>
+    <div style="overflow-x:auto">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th style="text-align:left">Feature</th>
+            <th class="hl">Juliette's App</th>
+            <th>YouTube</th>
+            <th>Gym Membership</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Progressive overload programs</td><td class="hl"><span class="chk">✓</span></td><td><span class="crs">—</span></td><td><span class="crs">—</span></td></tr>
+          <tr><td>Train anywhere, anytime</td><td class="hl"><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="crs">—</span></td></tr>
+          <tr><td>Built-in timer with voice cues</td><td class="hl"><span class="chk">✓</span></td><td><span class="crs">—</span></td><td><span class="crs">—</span></td></tr>
+          <tr><td>HIIT, Tabata & Strength programs</td><td class="hl"><span class="chk">✓</span></td><td><span class="crs">—</span></td><td><span class="crs">—</span></td></tr>
+          <tr><td>Progress tracking & streaks</td><td class="hl"><span class="chk">✓</span></td><td><span class="crs">—</span></td><td><span class="chk">✓</span></td></tr>
+          <tr><td>Juliette's coaching in every session</td><td class="hl"><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="crs">—</span></td></tr>
+          <tr><td>New programs monthly</td><td class="hl"><span class="chk">✓</span></td><td><span class="crs">—</span></td><td><span class="crs">—</span></td></tr>
+          <tr><td>Cancel anytime</td><td class="hl"><span class="chk">✓</span></td><td><span class="chk">✓</span></td><td><span class="crs">—</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-box"><div class="s-num">9,400+</div><div class="s-label">Athletes training hard</div></div>
+    <div class="stat-box"><div class="s-num">500+</div><div class="s-label">Calories per session avg</div></div>
+    <div class="stat-box"><div class="s-num">4 / 5</div><div class="s-label">See results in 4 weeks</div></div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <span class="eyebrow">Results</span>
+    <h2>Real people. <span class="pink">Real results.</span></h2>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"The Killer Tabata program destroyed me in the best way possible. Six weeks in and I've dropped 8lbs and my endurance is unrecognisable. The timer means I never once stopped mid-workout."</p>
+        <div class="t-bar"></div>
+        <div class="t-name">Mike R.</div><div class="t-loc">Dallas, TX</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"I've done every bootcamp class there is. Nothing has hit like Juliette's HIIT programs. The progressive overload is real — I'm genuinely stronger every week."</p>
+        <div class="t-bar"></div>
+        <div class="t-name">Sarah K.</div><div class="t-loc">Chicago, IL</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"I travel constantly and used to skip workouts in hotels. The app changed that completely. 60 minutes, a little floor space, and Juliette's voice in my ear — I never miss now."</p>
+        <div class="t-bar"></div>
+        <div class="t-name">James T.</div><div class="t-loc">New York, NY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <span class="eyebrow">Membership</span>
+    <h2>Commit to your <span class="pink">transformation</span></h2>
+    <p class="body-text">Your first 7 days are free. Try the full program — if it doesn't make you sweat, cancel. No questions asked.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-tier">Monthly</div>
+        <div class="price-amount">$14</div>
+        <div class="price-mo">.99 per month</div>
+        <div class="price-billing">Billed monthly</div>
+        <ul class="price-list">
+          <li>All workout programs</li>
+          <li>Built-in workout timer</li>
+          <li>Progress tracking</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <button class="price-btn" onclick="scrollTo(0,0)">Start Free Trial</button>
+      </div>
+      <div class="price-card feat">
+        <div class="pop-tag">Most Popular</div>
+        <div class="price-tier">Quarterly</div>
+        <div class="price-amount">$9</div>
+        <div class="price-mo">.99 per month</div>
+        <div class="price-billing">$29.99 every 3 months · save 33%</div>
+        <ul class="price-list">
+          <li>Everything in Monthly</li>
+          <li>New programs monthly</li>
+          <li>7-day free trial</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <button class="price-btn white-btn" onclick="scrollTo(0,0)">Start Free Trial</button>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Annual</div>
+        <div class="price-amount">$6</div>
+        <div class="price-mo">.99 per month</div>
+        <div class="price-billing">$83.99 billed yearly · save 53%</div>
+        <ul class="price-list">
+          <li>Everything in Quarterly</li>
+          <li>Early access to programs</li>
+          <li>Annual challenges</li>
+          <li>Best value — 2 months free</li>
+        </ul>
+        <button class="price-btn" onclick="scrollTo(0,0)">Get Started</button>
+      </div>
+    </div>
+    <p class="price-note">Secure payment · Cancel anytime · 7-day free trial on all plans</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <span class="eyebrow">Questions</span>
+    <h2>Everything you <span class="pink">need to know</span></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Are these workouts suitable for beginners? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Juliette's programs are high-intensity by design. Most are intermediate to advanced. If you're a complete beginner, the HIIT Ultimate 30 program is a good entry point — but expect to be challenged from day one.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What equipment do I need? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Most HIIT and Tabata programs are bodyweight only. Strength and metabolic programs use light dumbbells. All equipment needs are listed on each program card before you commit.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How is this different from Juliette's YouTube channel? <span class="faq-icon">+</span></button>
+        <div class="faq-a">YouTube gives you individual sessions. The app gives you a complete periodised program where each session builds progressive overload into the next — plus a built-in timer with voice cues so you never pause mid-HIIT.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How long are the sessions? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Sessions range from 30 minutes to 95 minutes depending on the program. Most Killer HIIT and Tabata programs run 55–75 minutes — these are full-length, serious training sessions, not quick fixes.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I cancel anytime? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. One click from account settings. Cancel before your 7-day trial ends and you will not be charged. No questions, no drama.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How often is new content added? <span class="faq-icon">+</span></button>
+        <div class="faq-a">New programs and standalone sessions are added every month. Your training never plateaus and you never run out of reasons to show up.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <span class="eyebrow">No excuses</span>
+  <h2>Your <span class="pink">killer</span> transformation<br>starts now</h2>
+  <p>Join 9,400+ athletes who stopped making excuses and started making results.</p>
+  <a href="#pricing" class="btn-pink" style="font-size:17px;padding:18px 52px">Start Your Free Trial</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Juliette <span>Wooten</span></div>
+    <div class="footer-links">
+      <a href="#programs">Programs</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Juliette Wooten. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- WORKOUT PLAYER -->
+<div class="player-overlay" id="playerOverlay">
+  <div class="player-bar" id="playerBar" style="width:0%"></div>
+  <button class="player-back" onclick="closePlayer()">← Back</button>
+  <div class="player-inner">
+    <div id="playerMain">
+      <p class="player-label" id="playerLabel">Killer HIIT Ultimate Burn</p>
+      <p class="player-phase" id="playerPhase">Get Ready</p>
+      <p class="player-exercise" id="playerEx">Preparing</p>
+      <div class="player-timer" id="playerTimer">3</div>
+      <p class="player-next">Next — <strong id="playerNext">Burpees</strong></p>
+      <div class="player-controls">
+        <button class="pbtn pause" id="pauseBtn" onclick="togglePause()">Pause</button>
+        <button class="pbtn skip" onclick="skipEx()">Skip</button>
+      </div>
+    </div>
+    <div class="player-done" id="playerDone">
+      <h2>KILLER <span>SESSION</span> DONE</h2>
+      <p>That was elite. Your body just got stronger — prove it again tomorrow.</p>
+      <div class="done-stats">
+        <div class="ds"><div class="n" id="dMins">0</div><div class="l">Minutes</div></div>
+        <div class="ds"><div class="n" id="dCals">0</div><div class="l">Calories</div></div>
+        <div class="ds"><div class="n" id="dEx">0</div><div class="l">Exercises</div></div>
+      </div>
+      <button class="btn-pink" onclick="closePlayer()">Back to Programs</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function filterProg(cat,btn){
+    document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.program-card').forEach(c=>{
+      c.style.display=(cat==='all'||c.dataset.cat===cat)?'block':'none';
+    });
+  }
+  function toggleFaq(btn){
+    const item=btn.parentElement;
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  }
+
+  const exs=[
+    {name:'Burpees',dur:40},{name:'Jump Squats',dur:40},
+    {name:'Mountain Climbers',dur:35},{name:'High Knees',dur:40},
+    {name:'Push-ups',dur:40},{name:'Squat Jumps',dur:40},
+    {name:'Lateral Bounds',dur:35},{name:'Plank Jacks',dur:40},
+    {name:'Tabata Sprints',dur:20}
+  ];
+  const REST=10;
+  let cur=0,tLeft=3,isRest=false,isPaused=false,isCd=true,intv=null,t0=null;
+  const S=window.speechSynthesis;
+  function speak(t){S.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=1.0;u.pitch=1.05;S.speak(u);}
+
+  function updateUI(){
+    const prog=((cur+(isRest?0.5:0))/exs.length)*100;
+    document.getElementById('playerBar').style.width=prog+'%';
+    document.getElementById('playerTimer').textContent=tLeft;
+    if(isCd){
+      document.getElementById('playerPhase').textContent='Get Ready';
+      document.getElementById('playerEx').textContent='Preparing';
+      document.getElementById('playerTimer').className='player-timer';
+      document.getElementById('playerNext').textContent=exs[0].name;
+      return;
+    }
+    if(isRest){
+      document.getElementById('playerPhase').textContent='Rest';
+      document.getElementById('playerEx').textContent='Recover Fast';
+      document.getElementById('playerTimer').className='player-timer rest';
+      document.getElementById('playerNext').textContent=cur<exs.length?exs[cur].name:'Last exercise';
+    } else {
+      document.getElementById('playerPhase').textContent='Exercise '+(cur+1)+' of '+exs.length;
+      document.getElementById('playerEx').textContent=exs[cur].name;
+      document.getElementById('playerTimer').className='player-timer';
+      document.getElementById('playerNext').textContent=cur+1<exs.length?exs[cur+1].name:'Final push';
+    }
+  }
+
+  function tick(){
+    if(isPaused)return;
+    tLeft--;updateUI();
+    if(tLeft<=0){
+      if(isCd){isCd=false;tLeft=exs[0].dur;speak(exs[0].name);updateUI();return;}
+      if(!isRest){
+        if(cur>=exs.length-1){finish();return;}
+        isRest=true;tLeft=REST;speak('Rest. Ten seconds. Go again.');
+      } else {
+        cur++;isRest=false;tLeft=exs[cur].dur;
+        if(cur===exs.length-1) speak('Last exercise. '+exs[cur].name+'. Give everything.');
+        else speak(exs[cur].name);
+      }
+      updateUI();
+    }
+    if(tLeft===3&&isRest) speak('Get ready.');
+  }
+
+  function startWorkout(name){
+    cur=0;tLeft=3;isRest=false;isPaused=false;isCd=true;
+    t0=Date.now();
+    document.getElementById('playerOverlay').classList.add('active');
+    document.getElementById('playerMain').style.display='block';
+    document.getElementById('playerDone').style.display='none';
+    document.getElementById('playerLabel').textContent=name.toUpperCase();
+    document.getElementById('pauseBtn').textContent='Pause';
+    if(intv)clearInterval(intv);
+    updateUI();
+    speak('Starting '+name+'. Let\'s go. No excuses.');
+    intv=setInterval(tick,1000);
+  }
+
+  function togglePause(){
+    isPaused=!isPaused;
+    document.getElementById('pauseBtn').textContent=isPaused?'Resume':'Pause';
+  }
+
+  function skipEx(){
+    if(isCd){isCd=false;tLeft=exs[0].dur;speak(exs[0].name);updateUI();return;}
+    if(isRest){isRest=false;tLeft=exs[cur].dur;speak(exs[cur].name);}
+    else{
+      if(cur>=exs.length-1){finish();return;}
+      cur++;isRest=false;tLeft=exs[cur].dur;speak(exs[cur].name);
+    }
+    updateUI();
+  }
+
+  function finish(){
+    clearInterval(intv);S.cancel();
+    const el=Math.round((Date.now()-t0)/60000);
+    document.getElementById('playerMain').style.display='none';
+    document.getElementById('playerDone').style.display='block';
+    document.getElementById('dMins').textContent=Math.max(el,1);
+    document.getElementById('dCals').textContent=Math.round(Math.max(el,1)*9);
+    document.getElementById('dEx').textContent=exs.length;
+    document.getElementById('playerBar').style.width='100%';
+    setTimeout(()=>speak('Killer session complete. That was elite work.'),400);
+  }
+
+  function closePlayer(){
+    clearInterval(intv);S.cancel();
+    document.getElementById('playerOverlay').classList.remove('active');
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+    });
+  });
+</script>
+</body>
+</html>
